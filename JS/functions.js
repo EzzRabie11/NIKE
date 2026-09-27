@@ -251,7 +251,7 @@ function showCart(){
             </div>
             </div>`
     })
-    
+    openPopup('Shop');
 }
 openPopup('Shop');}
 function removeFromShop(productId){
