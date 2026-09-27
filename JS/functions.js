@@ -251,8 +251,9 @@ function showCart(){
             </div>
             </div>`
     })
-    openPopup('Shop');
-}}
+    
+}
+openPopup('Shop');}
 function removeFromShop(productId){
 let productEle=document.querySelector(`.popup[data-popup-name="Shop"] .row .cartProduct[data-product-id="${productId}"]`);
 productEle.parentElement.parentElement.remove();
