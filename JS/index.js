@@ -66,7 +66,7 @@ navLinks.forEach(function(navLink){
         window.scrollTo(0,(topOfSection - navELe.clientHeight));
     });
 });
-window.addEventListener("DOMContentLoaded",function(){
+window.addEventListener("load",function(){
 loadingPageEle.classList.add("hide");
 setTimeout(function(){
     loadingPageEle.classList.add("d-none"); // of the bootstrap
