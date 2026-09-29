@@ -38,6 +38,19 @@ nav.navbar .ulIcons  i {
 #SC-carousel .sc-carousel-inner .sc-carousel-item.active .part2 img:nth-of-type(2){
     width: 250px;
 }
+#SC-carousel>button { 
+ position:absolute;
+ top: auto;
+ transform: translate(0);
+ bottom: 20px;
+}
+#SC-carousel>button.prev {
+    left: auto;
+    right: 80px;
+}
+#SC-carousel>button.next {
+    right: 20px;
+}
 #Latest .product .part2 h2 {
     font-size: 20px;
 }
@@ -66,6 +79,7 @@ width: 70%;
 }
 #SC-carousel .sc-carousel-inner .sc-carousel-item.active .part2 img:nth-of-type(2){
     width: 350px;
+    transform: translate(-50%,-60%) rotate(-35deg) scale(1);
 }
 #Latest .product {
     width: 400px;
@@ -88,6 +102,9 @@ width: 50%;
 }
     nav.navbar .navbar-brand {
     width: 10%;
+}
+#SC-carousel .sc-carousel-inner .sc-carousel-item.active .part2 img:nth-of-type(2){
+    transform: translate(-50%,-50%) rotate(-35deg) scale(1);
 }
 #Latest .product {
     width: 500px;
@@ -132,7 +149,7 @@ width: 60%;
     width: 400px;
 }
 #SC-carousel .sc-carousel-inner .sc-carousel-item.active .part2 img:nth-of-type(2){
-    width: 600px;
+    width: 550px;
 }
 #Latest .product .box1 li {
     width: 70px;

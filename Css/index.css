@@ -91,20 +91,21 @@ overflow: hidden;
 }
 #SC-carousel>button { 
  position:absolute;
- bottom: 20px;
  width: 45px;
  height: 45px;
+ top: 50%;
+transform: translateY(-50%);
  display: flex;
  justify-content: center;
  align-items: center;
  z-index: 2;
 }
-#SC-carousel>button.prev {
-    right: 80px;
+ #SC-carousel>button.prev {
+    left: 15px;
 }
-#SC-carousel>button.next {
-    right: 20px;
-}
+ #SC-carousel>button.next {
+    right: 15px;
+} 
 #SC-carousel .sc-carousel-inner .sc-carousel-item {
     position: absolute;
     top: 0;
@@ -182,16 +183,16 @@ overflow: hidden;
 }
 
 #SC-carousel .sc-carousel-inner .sc-carousel-item.active .part2 img:nth-of-type(2){
-    transform: translate(-40%,-50%) rotate(-35deg) scale(1);
+    transform: translate(-50%,-50%) rotate(-35deg) scale(1);
     opacity: 1;
-    width: 750px;
+    width: 700px;
 }
 #offer div[class*="part"] .item {
     position: relative;
 }
 #offer div[class*="part"] .item::after{
 content: "";
-width: 100%;
+width: 120%;
 height: 120%;
 position: absolute;
 top: 0;
@@ -217,6 +218,13 @@ transition-duration: 1s;
 }
 #Latest .product h2+p {
     color: #777;
+}
+#Latest .product .part1 .item .box1 ul li img {
+transition-duration: .5s;
+transform: scale(1);
+}
+#Latest .product .part1 .item .box1 ul li:hover img {
+transform: scale(1.2);
 }
 #Latest .product .part1 .box2 .item{
 height: 100%;
@@ -304,5 +312,4 @@ transform: scale(1.2);
 footer {
     background-color: var(--main-color) ;
     padding: 10px 0px;
-    
 }

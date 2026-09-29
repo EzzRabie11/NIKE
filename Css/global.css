@@ -12,6 +12,9 @@ background: #ADA996;
 background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+i ,li{
+    cursor: pointer;
+}
 .loadingPage{
     position: fixed;
     top: 0;
@@ -99,13 +102,13 @@ box-shadow: #00000040 0 54px 55px, #0000001f 0 -12px 30px, #0000001f 0 4px 6px, 
     z-index: 100;
     background-color: rgba(0, 0,0, .5);
     display: none;
+    overflow: auto;
 }
 .popup.active {
     display: flex;
 }
  .popup[data-popup-name="Shop"].active { 
     display: block;
-    overflow-y: auto;
 }
 /* we make it display block because of the scroll  */
 .popup .box { 
@@ -121,6 +124,16 @@ transition-duration: 1s;
 .popup[data-popup-name="Product"].active .box {
     width: 60%;
 }
+.popup[data-popup-name="Product"].active .box .color li {
+    cursor: pointer;
+}
+.popup[data-popup-name="Product"].active li img{
+transition-duration: .5s;
+transform: scale(1);
+}
+.popup[data-popup-name="Product"].active li:hover img{
+transform: scale(1.2);
+}
 .popup.show .box {
 transform: translateY(0%);
 opacity: 1;
@@ -128,8 +141,8 @@ opacity: 1;
 .popup .box .head i {
     position: absolute;
     font-size: 25px;
-    top: 10px;
-    right:10px;
+    top: 20px;
+    right:20px;
 }
 .popup[data-popup-name="Shop"].active .box{ 
     margin: 50px auto;
@@ -138,5 +151,5 @@ opacity: 1;
 .cartProduct>*{
     margin-bottom: 10px;
     align-items: center;
-    text-wrap-mode: nowrap;
+    text-wrap: nowrap;
 }
