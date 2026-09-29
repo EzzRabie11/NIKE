@@ -14,6 +14,12 @@
    let newSrc=currentSrcArr.join("/");
    imgEle.setAttribute("src",newSrc);
 }
+function updateFavicon(imgName, faviconEle, commonName){
+    let currentHref = faviconEle.getAttribute("href"),
+        currentHrefArr = currentHref.split("/");
+    currentHrefArr[currentHrefArr.length - 1] = `${imgName}-${commonName}.png`;
+    faviconEle.setAttribute("href", currentHrefArr.join("/"));
+}
 function checkScrolledNav(){
    let toggler=document.querySelector("nav.navbar button");
        toggler.addEventListener("click",function(){
@@ -28,10 +34,10 @@ function checkScrolledNav(){
 }
 function updateNavLink(sectionId){
 let section=document.querySelector(`#${sectionId}`),
-    sectionTop=section.offsetTop,
+    sectionTop=section.offsetTop-navELe.clientHeight-2,
     sectionHeight=section.clientHeight,
     sectionBottom=sectionTop+sectionHeight;
-if(window.scrollY>=sectionTop && window.scrollY<=sectionBottom){
+if(window.scrollY>sectionTop && window.scrollY<sectionBottom){
     let navLinkOfSection=document.querySelector(`a[href="#${sectionId}"]`),
      currentNavLink=navELe.querySelector(".nav-link.active");
         currentNavLink.classList.remove("active");
@@ -41,7 +47,7 @@ if(window.scrollY>=sectionTop && window.scrollY<=sectionBottom){
 function prepareImagesList(imagesList,isProduct=false){
 let liEle="";
 imagesList.forEach( function(image){
-liEle+= ` <li class=" ${(isProduct)?'':' mainBorder rounded-3'};  p-2"><img src="./images_Nike/products/${image}" alt="" class="img-fluid" onclick="changeSelectedImage('${image}',this)"></li>`
+liEle+= ` <li class=" ${(isProduct)?'':' mainBorder rounded-3'};  p-2"><img src="./images_Nike/products/${image}" alt="Nike Shoes Images" class="img-fluid" onclick="changeSelectedImage('${image}',this)"></li>`
 });
 return liEle;
 }
@@ -124,7 +130,7 @@ data-selected-color="${isProductIntoCart?.color??product.colors[0]}">
 <div class="col-md-6">
     <item>
         <div class="selectedImage">
-            <img src="./images_Nike/products/${product.images[0]}" class="img-fluid" alt="">
+            <img src="./images_Nike/products/${product.images[0]}" class="img-fluid" alt="First Product Image">
         </div>
         <ul class="d-flex list-unstyled mb-0">
             ${prepareImagesList(product.images,true)}
@@ -183,6 +189,7 @@ if(that!=null){
 toggleOrderBtn(that,'add');
 that.setAttribute('onclick',`addToCart(${productId},this)`);
 }
+
 }
 function toggleOrderBtn(btn,status){
 if(status =='add'){
@@ -214,46 +221,46 @@ function showCart(){
     let contentEle=document.querySelector(`.popup[data-popup-name="Shop"] .row`);
     if (cartProducts.length==0){
         contentEle.innerHTML=`<p class="alert alert-warning text-center">There Are Now Products</p>`;
+        contentEle.classList.add("mx-3");
     }
     else{
     contentEle.innerHTML='';
     cartProducts.forEach(function(cartProduct){
-        let product=getProduct(cartProduct.id);
-        contentEle.innerHTML+=`
-<div class="col-md-6 col-lg-4">
-            <div class="item">
-                <div class="cartProduct bg-light p-3 rounded-3 mt-3" data-product-id="${product.id}">
-                    <img src="./images_Nike/Products/${product.images[0]}" class="img-fluid" alt="">
-                    <h4 class="mb-3 " >${product.name.slice(0,10)}...</h4>
-                    <div class="price d-flex fw-bold">
-        <h6 class="fw-bolder label me-md-2 me-3">Price:</h6>
-        <div class="value">
-           ${preparePrice(product.price,product.discount)}
-        </div>
-    </div>
+    let product=getProduct(cartProduct.id);
+    contentEle.innerHTML+=`
+    <div class="col-md-6 col-lg-4">
+        <div class="item">
+            <div class="cartProduct bg-light p-3 rounded-3 mt-3" data-product-id="${product.id}">
+                <img src="./images_Nike/products/${product.images[0]}" class="img-fluid" alt="First Product Image">
+                <h4 class="mb-3 ">${product.name.slice(0,10)}...</h4>
+                <div class="price d-flex fw-bold">
+                    <h6 class="fw-bolder label me-md-2 me-3">Price:</h6>
+                    <div class="value">
+                        ${preparePrice(product.price,product.discount)}
+                    </div>
+                </div>
                 <div class="size d-flex ">
-            <h6 class="fw-bolder label me-md-2 me-3">Size:</h6>
-            <div class="value">
-                <ul class="list-unstyled d-flex column-gap-3">
-                    ${prepareSizes([cartProduct.size])}
-                </ul>
-            </div>
-        </div>
-            <div class="color d-flex ">
-            <h6 class="fw-bolder label me-md-2 me-3">Color:</h6>
-            <div class="value">
-                <ul class="list-unstyled d-flex column-gap-3 ">
-                ${prepareColors([cartProduct.color])}
-                </ul>
-            </div>
+                    <h6 class="fw-bolder label me-md-2 me-3">Size:</h6>
+                    <div class="value">
+                        <ul class="list-unstyled d-flex column-gap-3">
+                            ${prepareSizes([cartProduct.size])}
+                        </ul>
+                    </div>
+                </div>
+                <div class="color d-flex ">
+                    <h6 class="fw-bolder label me-md-2 me-3">Color:</h6>
+                    <div class="value">
+                        <ul class="list-unstyled d-flex column-gap-3 ">
+                            ${prepareColors([cartProduct.color])}
+                        </ul>
+                    </div>
                 </div>
                 <button class="btn btn-danger w-100 " onclick="removeFromShop(${product.id})">Remove</button>
             </div>
-            </div>`
-    })
-    openPopup('Shop');
-}
-openPopup('Shop');}
+        </div>`
+        })
+        }
+    openPopup('Shop');}
 function removeFromShop(productId){
 let productEle=document.querySelector(`.popup[data-popup-name="Shop"] .row .cartProduct[data-product-id="${productId}"]`);
 productEle.parentElement.parentElement.remove();
@@ -261,6 +268,7 @@ let buttonOfLatestProduct=document.querySelector(`#Latest .product[data-product-
  removeFromCart(productId,buttonOfLatestProduct);
  if(cartProducts.length==0){
     let contentEle=document.querySelector(`.popup[data-popup-name="Shop"] .row`);
-    contentEle.innerHTML=`<p class="alert alert-warning text-center">There Are Now Products</p>`;
+    contentEle.innerHTML=`<p class="alert alert-warning text-center ">There Are Now products</p>`;
+    contentEle.classList.add("mx-3");
  }
 }
