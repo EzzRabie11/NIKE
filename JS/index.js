@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(function () {
         loadingPageEle.classList.add("d-none");
-    }, 100);
+    }, 3000);
 });
 navLinks.forEach(function(navLink){
     navLink.addEventListener("click",function(e){
