@@ -27,7 +27,7 @@ i ,li{
     align-items: center;
     background-color: black;
     opacity: 1;
-    transition-duration: 2s;
+    transition-duration: 4s;
 }
 .loadingPage.hide {
     opacity: 0;
