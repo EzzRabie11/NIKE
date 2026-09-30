@@ -72,7 +72,7 @@ window.addEventListener("load",function(){
 loadingPageEle.classList.add("hide");
 setTimeout(function(){
     loadingPageEle.classList.add("d-none"); // of the bootstrap
-},1000);
+},3000);
 });
 
 latest.forEach(function (product){ // why we used innerHtml not prepend to add new element in the same place
