@@ -48,11 +48,13 @@ let currentSlide= SCCarousel.querySelector(".sc-carousel-item.active"),
         updateImage(previousSlideColorName,item,"correct")
     }
 });
-window.addEventListener("scroll",function(){
-checkScrolledNav();
-sections.forEach(function(section){
-updateNavLink(section.id);
-})
+window.addEventListener("DOMContentLoaded", function () {
+
+    loadingPageEle.classList.add("hide");
+
+    setTimeout(function () {
+        loadingPageEle.classList.add("d-none");
+    }, 100);
 });
 navLinks.forEach(function(navLink){
     navLink.addEventListener("click",function(e){
