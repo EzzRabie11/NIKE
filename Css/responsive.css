@@ -92,7 +92,7 @@ width: 70%;
 }
 .popup[data-popup-name="Shop"].active .box,
 .popup[data-popup-name="Product"].active .box{ 
-width: 50%;
+width: 60%;
 } 
 }
 

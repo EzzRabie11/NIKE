@@ -48,13 +48,11 @@ let currentSlide= SCCarousel.querySelector(".sc-carousel-item.active"),
         updateImage(previousSlideColorName,item,"correct")
     }
 });
-window.addEventListener("DOMContentLoaded", function () {
-
-    loadingPageEle.classList.add("hide");
-
-    setTimeout(function () {
-        loadingPageEle.classList.add("d-none");
-    }, 3000);
+window.addEventListener("scroll",function(){
+checkScrolledNav();
+sections.forEach(function(section){
+updateNavLink(section.id);
+})
 });
 navLinks.forEach(function(navLink){
     navLink.addEventListener("click",function(e){
@@ -68,11 +66,12 @@ navLinks.forEach(function(navLink){
         window.scrollTo(0,(topOfSection - navELe.clientHeight));
     });
 });
-window.addEventListener("load",function(){
-loadingPageEle.classList.add("hide");
-setTimeout(function(){
-    loadingPageEle.classList.add("d-none"); // of the bootstrap
-},3000);
+window.addEventListener("DOMContentLoaded", function () {
+    loadingPageEle.classList.add("hide");
+
+    setTimeout(function () {
+        loadingPageEle.classList.add("d-none");
+    }, 3000);
 });
 
 latest.forEach(function (product){ // why we used innerHtml not prepend to add new element in the same place
